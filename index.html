@@ -1,0 +1,207 @@
+<html>
+	<head>
+		<title>Bitourea</title>
+		<link type="text/css" rel="stylesheet" href="/resources/css/app.css" />
+		<link type="text/css" rel="stylesheet" href="/resources/css/grid.css" />
+		<link type="text/css" rel="stylesheet" href="/resources/css/jquery-ui-1.10.1.custom.min.css" />
+		<script src="/resources/js/jquery.min.js"></script>
+		<script src="/resources/js/jquery-ui-1.10.1.custom.min.js"></script>
+		<script>
+			$(document).ready(function(){				
+				$(".mainMenuHref").click(function() {
+					var anchorTag = $(this).find("a");
+					if(anchorTag && anchorTag.length > 0){
+						if(anchorTag.attr("target") === "_blank"){
+							window.open(anchorTag.attr("href"), '_blank');
+							window.focus();
+						}else{
+							window.location = anchorTag.attr("href");
+						}						
+					}
+				});
+			});
+			
+			function loadTumblrIframe(){
+				$("#newsThoughtsDiv iframe").get(0).contentWindow.location.href = "http://shreyaspurohit.tumblr.com";
+			}
+			
+			function unloadTumblrIframe(){
+				$("#newsThoughtsDiv iframe").get(0).contentWindow.location.href = "about:blank";
+			}
+			
+			function showDialog(type, widthValPerc, heightValPerc, hideTitle){
+				var w = widthValPerc ? widthValPerc : 0.5;
+				var h = heightValPerc ? heightValPerc : 0.75;
+				var wWidth = $(window).width();
+				var dWidth = wWidth * w;
+				var wHeight = $(window).height();
+				var dHeight = wHeight * h;
+				
+				$(type).dialog({
+				  dialogClass: "no-close" + (hideTitle === true ? " noTitle" : " withTitle"),
+				  modal: true,
+				  buttons: {
+					Close: function() {
+					  $( this ).dialog( "close" );
+					}
+				  },
+				  draggable: false,
+				  width:dWidth
+				});				
+				if(heightValPerc){
+					$(type).dialog("option", "height", dHeight);
+				}
+			}
+		</script>
+		<style>
+			body{
+				width: 100%;
+			}
+			.mainContainer{
+				width: 100%;				
+			}
+			.mainMenuHref, .mainMenuDialog{
+				cursor : pointer;
+			}
+			.hidden{
+				display: none;
+			}
+			.ui-dialog .ui-dialog-titlebar, .ui-dialog .ui-dialog-buttonpane { 
+				font-size: 0.8em; 
+			}
+			#socialDiv .ui-dialog{
+				min-width: 500px;
+				min-height: 400px;
+			}
+			#newsThoughtsDiv .ui-dialog{
+				min-width: 500px;
+				min-height: 400px;
+			}
+			.no-close .ui-dialog-titlebar-close {
+				display: none;
+			}
+			.ui-dialog .ui-dialog-content{
+				font-size: 0.8em;
+			}
+			#socialDiv div{
+				padding-bottom: 5px;
+				height: 20%;
+			}
+			.noTitle .ui-dialog-titlebar {
+				display:none
+			}
+			#titleDiv{
+				position: absolute;
+				top: 1%;
+				left: 1%;
+				font-family: 'Freckle Face', cursive;
+				font-size: 4em;
+			}
+		</style>
+	</head>
+	<body class="container_16">
+		<div class="mainContainer prefix_5 grid_11">			
+			<div class="drop-shadow curled mainMenuDialog" onclick="showDialog('#aboutDiv')">
+				<p>About </p>
+			</div>			
+			<div class="drop-shadow curled mainMenuDialog" onclick="showDialog('#resumeDiv')">
+				<p>Resume </p>
+			</div>			
+		</div>	
+		<div class="mainContainer prefix_5 grid_11">
+			<div class="drop-shadow curled mainMenuDialog" onclick="showDialog('#socialDiv')">
+				<p>Social </p>
+			</div>			
+			<div class="drop-shadow curled mainMenuDialog" onclick="showDialog('about')">
+				<p>Projects </p>
+			</div>
+		</div>
+		<div class="mainContainer prefix_5 grid_11">
+			<div class="drop-shadow curled mainMenuHref">
+				<p>Blog <a href="http://techdiary.bitourea.com" target="_blank"></a></p>
+			</div>
+			<div class="drop-shadow curled mainMenuDialog" onclick="showDialog('#newsThoughtsDiv', 0.85, 0.9, true);loadTumblrIframe();">
+				<p>News & Thoughts </p>
+			</div>
+		</div>
+		<div id="aboutDiv" class="divDialog hidden" title="About">
+			I am Shreyas Purohit, a developer who enjoys programming E2E and experimenting with variety of latest and greatest cutting edge technologies. 
+			I believe every technology or language has its own set of usages and there is nothing that will work as default all. I have worked on Java, Scala, Groovy, nodejs, ruby, 
+			and many more. This website indexes all my projects and social pages. I have a M.S in Computer Science, and a certificate in Modeling and Simulation from 
+			UAHuntsville. I have published my thesis with topic "Modeling CPU Utilization and Network Traffic in a Distributed Interactive Simulation System Using Discrete Event Simulation". 
+			To contact me related to any job please refer to my Linked-In page.			
+		</div>
+		<div id="resumeDiv" class="divDialog hidden" title="Resume">
+			<iframe frameborder="0" height="660px" src="http://docs.google.com/gview?a=v&amp;pid=explorer&amp;chrome=false&amp;api=true&amp;embedded=true&amp;srcid=0B8XexD9CyDSJN2U3OWIyNDctZWIyMy00YmM1LTk3ZTItZTA0NWVkNDMzMjJl&amp;hl=en" width="100%">Shreyas Purohit Resume</iframe>
+		</div>
+		<div id="newsThoughtsDiv" class="divDialog hidden" title="News & Thoughts">
+			<iframe style="border: none;  position: relative;  top: 0;  left: 0;  right: 0;  bottom: 0;  float: none;  width: 100%;  height: 100%;"></iframe>
+		</div>
+		<div id="socialDiv" class="divDialog hidden" title="Social">			
+			<div class="container_16">
+				<div class="grid_8">
+					<a href="http://www.linkedin.com/in/shreyaspurohit">      
+						<img src="http://www.linkedin.com/img/webpromo/btn_myprofile_160x33.png" width="160" height="33" border="0" alt="View Shreyas Purohit's profile on LinkedIn">
+					</a>
+				</div>
+				<div class="grid_8">
+					<a href="https://twitter.com/shreyaspurohit" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @shreyaspurohit</a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				</div>				
+				<div class="clear">&nbsp;</div>
+				<div class="grid_8">				
+					<a href="https://www.facebook.com/shreyas.purohit" target="_TOP" title="Shreyas Purohit">
+					<img src="https://badge.facebook.com/badge/542360749.5174.1168234184.png" style="border: 0px;" /></a>
+				</div>
+				<div class="grid_8" style="padding-top:5%;">
+					<div class="g-plus" data-width="232" data-height="69" data-href="//plus.google.com/117108547311830763849" data-rel="author"></div>
+					<script type="text/javascript">
+					  (function() {
+						var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+						po.src = 'https://apis.google.com/js/plusone.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+					  })();
+					</script>
+				</div>			
+				<div class="clear">&nbsp;</div>
+				<div class="grid_8">
+					<iframe src="http://githubbadge.appspot.com/badge/shreyaspurohit?s=1" style="border: 0;height: 142px;width: 200px;overflow: hidden;" frameBorder=0></iframe>
+				</div>
+				<div class="grid_8">
+					<!-- Start of Flickr Badge -->
+					<style type="text/css">
+					#flickr_badge_source_txt {padding:0; font: 11px Arial, Helvetica, Sans serif; color:#666666;}
+					#flickr_badge_icon {display:block !important; margin:0 !important; border: 1px solid rgb(0, 0, 0) !important;}
+					#flickr_icon_td {padding:0 5px 0 0 !important;}
+					.flickr_badge_image {text-align:center !important;}
+					.flickr_badge_image img {border: 1px solid black !important;}
+					#flickr_www {display:block; text-align:left; padding:0 10px 0 10px !important; font: 11px Arial, Helvetica, Sans serif !important; color:#3993ff !important;}
+					#flickr_badge_uber_wrapper a:hover,
+					#flickr_badge_uber_wrapper a:link,
+					#flickr_badge_uber_wrapper a:active,
+					#flickr_badge_uber_wrapper a:visited {text-decoration:none !important; background:inherit !important;color:#3993ff;}
+					#flickr_badge_wrapper {background-color:#ffffff;border: solid 1px #000000}
+					#flickr_badge_source {padding:0 !important; font: 11px Arial, Helvetica, Sans serif !important; color:#666666 !important;}
+					</style>
+					<table id="flickr_badge_uber_wrapper" cellpadding="0" cellspacing="10" border="0"><tr><td><a href="http://www.flickr.com" id="flickr_www">www.<strong style="color:#3993ff">flick<span style="color:#ff1c92">r</span></strong>.com</a><table cellpadding="0" cellspacing="10" border="0" id="flickr_badge_wrapper">
+					<tr>
+					<script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?show_name=1&count=1&display=random&size=t&layout=h&source=user&user=56357994%40N02"></script>
+					<td id="flickr_badge_source" valign="center" align="center">
+					<table cellpadding="0" cellspacing="0" border="0"><tr>
+					<td width="10" id="flickr_icon_td"><a href="http://www.flickr.com/photos/shreyaspurohit/"><img id="flickr_badge_icon" alt="shreyas_p85's items" src="http://farm6.staticflickr.com/5009/buddyicons/56357994@N02.jpg?1293909742#56357994@N02" align="left" width="48" height="48"></a></td>
+					<td id="flickr_badge_source_txt"><nobr>Go to</nobr> <a href="http://www.flickr.com/photos/shreyaspurohit/">shreyas_p85's photostream</a></td>
+					</tr></table>
+					</td>
+					</tr>
+					</table>
+					</td></tr></table>
+					<!-- End of Flickr Badge -->
+				</div>				
+			</div>
+		</div>
+		<div id="titleDiv">
+			<label>Bitourea</label>
+			<link href='http://fonts.googleapis.com/css?family=Freckle+Face' rel='stylesheet' type='text/css'>
+		</div>
+	</body>
+</html>
