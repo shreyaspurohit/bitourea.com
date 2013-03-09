@@ -73,3 +73,36 @@ body{
 	min-width: 125px;
 	min-height: 60px; 
 }
+
+.mainContainer{
+	width: 100%;				
+}
+.mainMenuHref, .mainMenuDialog{
+	cursor : pointer;
+}
+.hidden{
+	display: none;
+}
+.ui-dialog .ui-dialog-titlebar, .ui-dialog .ui-dialog-buttonpane { 
+	font-size: 0.8em; 
+}			
+.no-close .ui-dialog-titlebar-close {
+	display: none;
+}
+.ui-dialog .ui-dialog-content{
+	font-size: 0.8em;
+}
+#socialDiv div{
+	padding-bottom: 5px;
+	height: 20%;
+}
+.noTitle .ui-dialog-titlebar {
+	display:none
+}
+#titleDiv{
+	position: absolute;
+	top: 1%;
+	left: 1%;
+	font-family: 'Freckle Face', cursive;
+	font-size: 4em;
+}
